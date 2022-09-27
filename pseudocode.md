@@ -1,10 +1,10 @@
 # WETAHER APP
 
 
-### <u>INIT</u>
-#### DIV id = app
+## <u>INIT</u>
+### DIV id = app
 >   - Div id = zipInput
->       -input field (5 dig only)
+>       - input field *(5 dig only) else alert user.*
 >       - get weather button
 >   - **Div id = location**
 >       - city
@@ -23,4 +23,6 @@
 >   - **Div id = otherInfo**
 >       - Other Info
 >       - *Icon (api)*
+
+### Add Bootsrap Classes
 
