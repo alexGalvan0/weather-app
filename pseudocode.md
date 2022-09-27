@@ -2,7 +2,7 @@
 
 
 ## <u>INIT</u>
-### DIV id = app
+### DIV id = root
 >   - Div id = zipInput
 >       - input field *(5 dig only) else alert user.*
 >       - get weather button
