@@ -1,3 +1,11 @@
 *{
     font-family: 'Montserrat', sans-serif;
 }
+
+.row-zip {
+    border: 1px solid red;
+}
+
+.row-city{
+    border: 1px solid blue;
+}

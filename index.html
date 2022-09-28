@@ -13,8 +13,64 @@
     <script src="./js/main.js"></script>
 
     <link rel="stylesheet" href="./css/style.css">
+
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root" class="container-flow d-flex flex-column">
+
+
+      <!--Top div-->
+      <div class="row row-zip">
+        <div class="col-xl-12 col-md-8 col-sm-6  d-flex justify-content-center">
+          <label>
+            Zip:
+            <input id="zipInput" type="text" placeholder="40514">
+          </label>
+          <button class="btn btn-primary">Get Weather</button>
+        </div>
+      </div>
+
+
+      <!--City Div-->
+
+      <div class="row row-city">
+        <div class="col">
+
+          <h3>City</h3>
+          <h4>Lexington</h4>
+        </div>
+      </div>
+      
+
+      <div class="row row-temp">
+        <div class="col">
+
+          <h3>Temperature</h3>
+          <p>Kelvin</p>
+          <p>Ferenheight</p>
+          <p>Celcius</p>
+        </div>
+      </div>
+
+
+      <div class="row row-condition">
+        <div class="col">
+
+          <h3>Condition</h3>
+          <p>rain</p>
+        </div>
+      </div>
+
+
+      <div class="row row-condition">
+        <div class="col">
+
+          <h3>Other Info</h3>
+          <img src="" alt="">
+        </div>
+      </div>
+
+
+    </div>
   </body>
 </html>
