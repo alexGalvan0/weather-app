@@ -7,6 +7,11 @@ const celsius = document.getElementById('celsius');
 let condition = document.getElementById('condition');
 let icon = document.getElementById('icon') 
 
+function createHtmlElement(element='div',nameClass){
+    return document.createElement(element).classList.add(nameClass)
+}
+
+createHtmlElement('input')
 
  async function getUserInput(){
     let zip = zipInput.value.toString();
