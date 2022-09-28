@@ -3,10 +3,16 @@
 }
 
 #root {
-    background-color: gray;
+    background-color: lightgray;
     
 }
 body{
 
     background-repeat: no-repeat;
+}
+
+.comp-container {
+    padding: 0 3rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
 }
