@@ -1,7 +1,7 @@
 
 
 const root = document.getElementById('root')
-root.classList.add('container-flow','d-flex','flex-column','justify-content-center','comp-container')
+root.classList.add('container','d-flex','flex-column','justify-content-center','comp-container')
 
 
 function creatElment(elment='div'){
@@ -29,7 +29,7 @@ function createFormDiv(){
     inputField.value = '40517'
     inputField.id = 'zipInput'
     formLabel.append(inputField)
-    formDivContainer.appendChild(formLabel)
+    formCol.appendChild(formLabel)
 
     //button
     let btn = creatElment('button')
@@ -141,8 +141,6 @@ function createInfo(){
     infoIcon.alt = 'Icon'
     infoCol.appendChild(infoIcon);
 }
-
-
 createFormDiv()
 createCityDiv()
 createTempDiv()
@@ -171,10 +169,7 @@ createHtmlElement('input')
  
     let resp = await axios.get(url);
     let data = resp;
-    console.log(data)
     
-
-
 
     let cityName = data.data.name;
     let fereTemp = data.data.main.temp;

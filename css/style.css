@@ -16,3 +16,7 @@ body{
     padding-top: 5rem;
     padding-bottom: 5rem;
 }
+#icon {
+    height: 5rem;
+    width: 5rem;
+}
