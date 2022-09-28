@@ -2,10 +2,11 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-.row-zip {
-    border: 1px solid red;
+#root {
+    background-color: gray;
+    
 }
+body{
 
-.row-city{
-    border: 1px solid blue;
+    background-repeat: no-repeat;
 }
