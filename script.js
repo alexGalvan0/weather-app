@@ -1,22 +1,16 @@
 const root = document.getElementById('root')
-const body = document.body
-root.classList.add('container','d-flex','flex-column','justify-content-center','comp-container')
+const body = document.body;
 
+root.classList.add('container','d-flex','flex-column','justify-content-center','comp-container','text-center')
+
+let spinner;
+function createSpinner(){
+    spinner = creatElment();
+    spinner.classList.add('spinner-border' ,'text-primary')
+    body.appendChild(spinner)
+}
 function creatElment(elment='div'){
     return document.createElement(elment)
-}
-function loading() {
-
-    //load container
-    let loadContainer = creatElment()
-    loadContainer.classList.add('spinner-border', 'text-primary')
-    body.appendChild(loadContainer)
-
-    //spinner
-    let spinner = creatElment('span')
-    spinner.classList.add('visually-hidden')
-    spinner.innerHTML = 'Loading...'
-    loadContainer.appendChild(spinner)
 }
 function createFormDiv(){
 
@@ -32,7 +26,7 @@ function createFormDiv(){
 
     //form label
     let formLabel = creatElment('label');
-    formLabel.innerHTML='ZIP: '
+    formLabel.innerHTML='Zip: '
 
     //form input
     let inputField = creatElment('input')
@@ -52,12 +46,12 @@ function createFormDiv(){
 function createCityDiv(){
     //city row
     let cityDivRow = creatElment()
-    cityDivRow.classList.add('row','row-city')
+    cityDivRow.classList.add('row','row-city','d-flex','justify-content-center')
     root.appendChild(cityDivRow)
 
     //city col
     let cityCol = creatElment()
-    cityCol.classList.add('col', 'd-flex', 'justify-content-center', 'flex-column')
+    cityCol.classList.add('col', 'd-flex', 'justify-content-center','flex-column')
     cityDivRow.appendChild(cityCol)
 
     //cityText
@@ -79,12 +73,12 @@ function createTempDiv(){
 
     //temp col
     let tempCol = creatElment()
-    tempCol.classList.add('col','d-flex', 'flex-row', 'justify-content-center', 'flex-column')
+    tempCol.classList.add('col','d-flex', 'flex-row', 'justify-content-center', 'flex-column','text-center')
     tempRow.appendChild(tempCol);
 
     //temps
     let temp = creatElment('h3');
-    temp.innerText = 'TEMPERATURE';
+    temp.innerText = 'Temperature:';
     tempCol.appendChild(temp)
 
     //tempOutputs
@@ -115,7 +109,7 @@ function createConditionDiv(){
 
     //condition 
     let condi = creatElment('h3');
-    condi.innerText= 'CONDITION'
+    condi.innerText= 'Condition'
     conditionCol.appendChild(condi)
 
     //condition output
@@ -132,12 +126,12 @@ function createInfo(){
 
     //info col
     let infoCol = creatElment();
-    infoCol.classList.add('col', 'd-flex', 'justify-content-center', 'flex-column')
+    infoCol.classList.add('col')
     infoRow.appendChild(infoCol);
 
     //info header
     let infoHeader = creatElment('h3');
-    infoHeader.innerText = 'OTHER INFO'
+    infoHeader.innerText = 'Other Info:'
     infoCol.appendChild(infoHeader);
 
     //img
@@ -147,12 +141,11 @@ function createInfo(){
     infoIcon.alt = 'Icon'
     infoCol.appendChild(infoIcon);
 }
-setTimeout(createFormDiv, 5000)
-setTimeout(createCityDiv,5000)
-setTimeout(createTempDiv,5000)
-setTimeout(createConditionDiv,5000)
-setTimeout(createInfo,5000)
-loading()
+createFormDiv()
+createCityDiv()
+createTempDiv()
+createConditionDiv()
+createInfo()
 
 //get html elements
 const zipInput = document.getElementById('zipInput');
@@ -165,7 +158,9 @@ let condition = document.getElementById('condition');
 let icon = document.getElementById('icon') 
 
 const key = '933f7703450958683b430c05ee91f80b';
+
  async function getUserInput(){
+    createSpinner();
     let zip = zipInput.value.toString();
     let url = `https://api.openweathermap.org/data/2.5/weather?zip=${zip},us&units=imperial&appid=${key}`
  
@@ -186,13 +181,14 @@ const key = '933f7703450958683b430c05ee91f80b';
 
     cityOutput.innerHTML = cityName
 
-    fere.innerText = `Fahrenheit: ${Math.ceil(fereTemp)}`
-    celsius.textContent = `Celsius: ${Math.ceil(celsiTemp)}`
-    kelvin.textContent = `Kelvin: ${Math.ceil(kelvinTemp)}`
+    fere.innerText = ` Fahrenheit: ${Math.ceil(fereTemp)}`
+    celsius.textContent = ` Celsius: ${Math.ceil(celsiTemp)}`
+    kelvin.textContent = ` Kelvin: ${Math.ceil(kelvinTemp)}`
     
     condition.textContent = conditionTemp;
 
     icon.src = `http://openweathermap.org/img/wn/${iconId}@2x.png`
+    spinner.classList.add('hidden');
 
 }
 //get User Location
@@ -218,19 +214,17 @@ navigator.geolocation.getCurrentPosition(async (position) =>{
     cityOutput.innerHTML = cityName
 
     fere.innerText = `Fahrenheit: ${Math.ceil(fereTemp)}`
-    celsius.textContent = `Celsius: ${Math.ceil(celsiTemp)}`
-    kelvin.textContent = `Kelvin: ${Math.ceil(kelvinTemp)}`
+    celsius.textContent = ` Celsius: ${Math.ceil(celsiTemp)}`
+    kelvin.textContent = ` Kelvin: ${Math.ceil(kelvinTemp)}`
     
     condition.textContent = conditionTemp;
 
     icon.src = `http://openweathermap.org/img/wn/${iconId}@2x.png`
+    spinner.classList.add('hidden')
     
 })
 
 
 
-
-
-
-//addEventListener('DOMContentLoaded',getUserInput)
+addEventListener('DOMContentLoaded',getUserInput)
 getWeatherBtn.addEventListener('click',getUserInput)
