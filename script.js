@@ -230,6 +230,9 @@ navigator.geolocation.getCurrentPosition(async (position) =>{
     icon.src = `http://openweathermap.org/img/wn/${iconId}@2x.png`
     spinner.classList.add('hidden')
     
+}, ()=>{
+    spinner.classList.add('hidden');
+    alert('add zip')
 })
 
 
