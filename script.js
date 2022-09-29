@@ -1,11 +1,22 @@
-
-
 const root = document.getElementById('root')
+const body = document.body
 root.classList.add('container','d-flex','flex-column','justify-content-center','comp-container')
-
 
 function creatElment(elment='div'){
     return document.createElement(elment)
+}
+function loading() {
+
+    //load container
+    let loadContainer = creatElment()
+    loadContainer.classList.add('spinner-border', 'text-primary')
+    body.appendChild(loadContainer)
+
+    //spinner
+    let spinner = creatElment('span')
+    spinner.classList.add('visually-hidden')
+    spinner.innerHTML = 'Loading...'
+    loadContainer.appendChild(spinner)
 }
 function createFormDiv(){
 
@@ -26,7 +37,7 @@ function createFormDiv(){
     //form input
     let inputField = creatElment('input')
     inputField.type = 'text'
-    inputField.value = '40517'
+    //inputField.value = '40517'
     inputField.id = 'zipInput'
     formLabel.append(inputField)
     formCol.appendChild(formLabel)
@@ -56,7 +67,6 @@ function createCityDiv(){
 
     //city output
     let cityOutput = creatElment('p');
-    cityOutput.innerHTML = 'Lexington';
     cityOutput.id = 'cityOutput'
     cityCol.appendChild(cityOutput)
 
@@ -80,15 +90,12 @@ function createTempDiv(){
     //tempOutputs
     let kel = creatElment('p');
     kel.id = 'kelvin'
-    kel.innerText = 'Kelvin'
     
     let fer = creatElment('p');
     fer.id = 'fere'
-    fer.innerText = 'Fahrenheit'
 
     let cels = creatElment('p');
     cels.id = 'celsius';
-    cels.innerText = 'Celsius'
 
     tempCol.appendChild(kel)
     tempCol.appendChild(fer)
@@ -114,7 +121,6 @@ function createConditionDiv(){
     //condition output
     let conOutput = creatElment('p');
     conOutput.id = 'condition';
-    conOutput.innerHTML = 'Rain'
     conditionCol.appendChild(conOutput)
 }
 function createInfo(){
@@ -141,19 +147,14 @@ function createInfo(){
     infoIcon.alt = 'Icon'
     infoCol.appendChild(infoIcon);
 }
-createFormDiv()
-createCityDiv()
-createTempDiv()
-createConditionDiv()
-createInfo()
+setTimeout(createFormDiv, 5000)
+setTimeout(createCityDiv,5000)
+setTimeout(createTempDiv,5000)
+setTimeout(createConditionDiv,5000)
+setTimeout(createInfo,5000)
+loading()
 
-
-//get User current loc
-async function getLoc(){
-   let location =  await navigator.geolocation.getCurrentPosition(console.log,console.log)
-    console.log(GeolocationPosition)
-    
-
+//get html elements
 const zipInput = document.getElementById('zipInput');
 const getWeatherBtn =document.getElementById('getWeatherBtn');
 const cityOutput = document.getElementById('cityOutput');
@@ -163,15 +164,9 @@ const celsius = document.getElementById('celsius');
 let condition = document.getElementById('condition');
 let icon = document.getElementById('icon') 
 
-function createHtmlElement(element='div',nameClass){
-    return document.createElement(element).classList.add(nameClass)
-}
-
-createHtmlElement('input')
-
+const key = '933f7703450958683b430c05ee91f80b';
  async function getUserInput(){
     let zip = zipInput.value.toString();
-    const key = '933f7703450958683b430c05ee91f80b';
     let url = `https://api.openweathermap.org/data/2.5/weather?zip=${zip},us&units=imperial&appid=${key}`
  
     let resp = await axios.get(url);
@@ -200,5 +195,42 @@ createHtmlElement('input')
     icon.src = `http://openweathermap.org/img/wn/${iconId}@2x.png`
 
 }
+//get User Location
 
+navigator.geolocation.getCurrentPosition(async (position) =>{
+    lat = position.coords.latitude
+    lon =  position.coords.longitude
+
+    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${key}`
+    let resp = await axios.get(url)
+    let data = resp
+    let cityName = data.data.name;
+    let fereTemp = data.data.main.temp;
+
+    let celsiTemp = (parseInt(fereTemp) - 32 ) * 5/9
+    let kelvinTemp = (parseInt(fereTemp) - 32) * 5/9 + 273.15
+
+    let conditionTemp = data.data.weather[0].description
+    
+    let iconId = data.data.weather[0].icon
+
+
+    cityOutput.innerHTML = cityName
+
+    fere.innerText = `Fahrenheit: ${Math.ceil(fereTemp)}`
+    celsius.textContent = `Celsius: ${Math.ceil(celsiTemp)}`
+    kelvin.textContent = `Kelvin: ${Math.ceil(kelvinTemp)}`
+    
+    condition.textContent = conditionTemp;
+
+    icon.src = `http://openweathermap.org/img/wn/${iconId}@2x.png`
+    
+})
+
+
+
+
+
+
+//addEventListener('DOMContentLoaded',getUserInput)
 getWeatherBtn.addEventListener('click',getUserInput)
