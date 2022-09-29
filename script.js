@@ -147,6 +147,13 @@ createTempDiv()
 createConditionDiv()
 createInfo()
 
+
+//get User current loc
+async function getLoc(){
+   let location =  await navigator.geolocation.getCurrentPosition(console.log,console.log)
+    console.log(GeolocationPosition)
+    
+
 const zipInput = document.getElementById('zipInput');
 const getWeatherBtn =document.getElementById('getWeatherBtn');
 const cityOutput = document.getElementById('cityOutput');
