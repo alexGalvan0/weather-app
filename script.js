@@ -1,12 +1,15 @@
 const root = document.getElementById('root')
 const body = document.body;
 
-root.classList.add('container','d-flex','flex-column','justify-content-center','comp-container','text-center','opacity-75')
+root.classList.add('container','d-flex','flex-column','comp-container','text-center','opacity-75')
 
 let spinner;
+function createTitle(){
+    return
+}
 function createSpinner(){
     spinner = creatElment();
-    spinner.classList.add('spinner-border' ,'text-light','p-5','position-fixed')
+    spinner.classList.add('spinner-border' ,'text-light','p-5','modal','position-absolute','text-center')
     body.appendChild(spinner)
 }
 function creatElment(elment='div'){
@@ -171,10 +174,14 @@ const key = '933f7703450958683b430c05ee91f80b';
         return
     }
     let url = `https://api.openweathermap.org/data/2.5/weather?zip=${zip},us&units=imperial&appid=${key}`
- 
-    let resp = await axios.get(url);
-    let data = resp;
-    
+    let data;
+    try{
+        let resp = await axios.get(url);
+        data = resp;
+    } catch {
+        alert('Invalid Zip')
+        spinner.classList.add('hidden');
+    }
 
     let cityName = data.data.name;
     let fereTemp = data.data.main.temp;
