@@ -1,7 +1,7 @@
 const root = document.getElementById('root')
 const body = document.body;
 
-root.classList.add('container','d-flex','flex-column','justify-content-center','comp-container','text-center')
+root.classList.add('container','d-flex','flex-column','justify-content-center','comp-container','text-center','opacity-75')
 
 let spinner;
 function createSpinner(){
@@ -21,7 +21,7 @@ function createFormDiv(){
 
     //form column
     let formCol = creatElment()
-    formCol.classList.add('col-xl-6','col-sm-12', 'd-flex', 'justify-content-center')
+    formCol.classList.add('col-xl-6','col-sm-12', 'd-flex', 'justify-content-center','opacity-100','flex-wrap')
     formDivContainer.appendChild(formCol)
 
     //form label
@@ -31,6 +31,7 @@ function createFormDiv(){
     //form input
     let inputField = creatElment('input')
     inputField.type = 'text'
+    
     inputField.setAttribute('maxlength', '5');
     
     //inputField.value = '40517'
@@ -41,7 +42,7 @@ function createFormDiv(){
     //button
     let btn = creatElment('button')
     btn.innerHTML = 'Get Weather'
-    btn.classList.add('btn', 'btn-primary')
+    btn.classList.add('btn', 'btn-primary','opacity-100','text-center')
     btn.id = 'getWeatherBtn';
     formCol.appendChild(btn)
 }
@@ -53,7 +54,7 @@ function createCityDiv(){
 
     //city col
     let cityCol = creatElment()
-    cityCol.classList.add('col-xl-6','col-sm-12','d-flex', 'flex-row', 'justify-content-center', 'flex-column','text-center')
+    cityCol.classList.add('col-xl-6','col-sm-12','d-flex', 'flex-row', 'justify-content-center', 'flex-column','text-center','opacity-100')
     cityDivRow.appendChild(cityCol)
 
     //cityText
@@ -75,7 +76,7 @@ function createTempDiv(){
 
     //temp col
     let tempCol = creatElment()
-    tempCol.classList.add('col-xl-6','col-sm-12','d-flex', 'flex-row', 'justify-content-center', 'flex-column','text-center')
+    tempCol.classList.add('col-xl-6','col-sm-12','d-flex', 'flex-row', 'justify-content-center', 'flex-column','text-center','opacity-100')
     tempRow.appendChild(tempCol);
 
     //temps
@@ -106,7 +107,7 @@ function createConditionDiv(){
 
     //condition col
     let conditionCol = creatElment();
-    conditionCol.classList.add('col-xl-6','col-sm-12', 'd-flex' ,'justify-content-center','flex-column')
+    conditionCol.classList.add('col-xl-6','col-sm-12', 'd-flex' ,'justify-content-center','flex-column','opacity-100')
     conditionRow.appendChild(conditionCol)
 
     //condition 
@@ -128,7 +129,7 @@ function createInfo(){
 
     //info col
     let infoCol = creatElment();
-    infoCol.classList.add('col-xl-6','col-sm-12')
+    infoCol.classList.add('col-xl-6','col-sm-12','opacity-100')
     infoRow.appendChild(infoCol);
 
     //info header
@@ -163,7 +164,12 @@ const key = '933f7703450958683b430c05ee91f80b';
 
  async function getUserInput(){
     createSpinner();
-    
+    let zip = zipInput.value.toString();
+
+    //dont run unless zip input 
+    if(zip == ''){
+        return
+    }
     let url = `https://api.openweathermap.org/data/2.5/weather?zip=${zip},us&units=imperial&appid=${key}`
  
     let resp = await axios.get(url);
