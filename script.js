@@ -6,7 +6,7 @@ root.classList.add('container','d-flex','flex-column','justify-content-center','
 let spinner;
 function createSpinner(){
     spinner = creatElment();
-    spinner.classList.add('spinner-border' ,'text-primary')
+    spinner.classList.add('spinner-border' ,'text-light','p-5','position-fixed')
     body.appendChild(spinner)
 }
 function creatElment(elment='div'){
@@ -21,7 +21,7 @@ function createFormDiv(){
 
     //form column
     let formCol = creatElment()
-    formCol.classList.add('col', 'd-flex', 'justify-content-center')
+    formCol.classList.add('col-xl-6','col-sm-12', 'd-flex', 'justify-content-center')
     formDivContainer.appendChild(formCol)
 
     //form label
@@ -31,6 +31,8 @@ function createFormDiv(){
     //form input
     let inputField = creatElment('input')
     inputField.type = 'text'
+    inputField.setAttribute('maxlength', '5');
+    
     //inputField.value = '40517'
     inputField.id = 'zipInput'
     formLabel.append(inputField)
@@ -46,12 +48,12 @@ function createFormDiv(){
 function createCityDiv(){
     //city row
     let cityDivRow = creatElment()
-    cityDivRow.classList.add('row','row-city','d-flex','justify-content-center')
+    cityDivRow.classList.add('row','row-city')
     root.appendChild(cityDivRow)
 
     //city col
     let cityCol = creatElment()
-    cityCol.classList.add('col', 'd-flex', 'justify-content-center','flex-column')
+    cityCol.classList.add('col-xl-6','col-sm-12','d-flex', 'flex-row', 'justify-content-center', 'flex-column','text-center')
     cityDivRow.appendChild(cityCol)
 
     //cityText
@@ -73,7 +75,7 @@ function createTempDiv(){
 
     //temp col
     let tempCol = creatElment()
-    tempCol.classList.add('col','d-flex', 'flex-row', 'justify-content-center', 'flex-column','text-center')
+    tempCol.classList.add('col-xl-6','col-sm-12','d-flex', 'flex-row', 'justify-content-center', 'flex-column','text-center')
     tempRow.appendChild(tempCol);
 
     //temps
@@ -104,7 +106,7 @@ function createConditionDiv(){
 
     //condition col
     let conditionCol = creatElment();
-    conditionCol.classList.add('col', 'd-flex' ,'justify-content-center','flex-column')
+    conditionCol.classList.add('col-xl-6','col-sm-12', 'd-flex' ,'justify-content-center','flex-column')
     conditionRow.appendChild(conditionCol)
 
     //condition 
@@ -126,7 +128,7 @@ function createInfo(){
 
     //info col
     let infoCol = creatElment();
-    infoCol.classList.add('col')
+    infoCol.classList.add('col-xl-6','col-sm-12')
     infoRow.appendChild(infoCol);
 
     //info header
@@ -161,7 +163,7 @@ const key = '933f7703450958683b430c05ee91f80b';
 
  async function getUserInput(){
     createSpinner();
-    let zip = zipInput.value.toString();
+    
     let url = `https://api.openweathermap.org/data/2.5/weather?zip=${zip},us&units=imperial&appid=${key}`
  
     let resp = await axios.get(url);
