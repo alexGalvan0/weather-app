@@ -47,7 +47,7 @@ let formCol = createElements({
 let formLabel = createElements({
     type: 'label',
     text: 'Zip:',
-    parent: root
+    parent: formCol
 });
 let inputField = createElements({
     type: 'input',
@@ -58,7 +58,7 @@ let inputField = createElements({
 let btn = createElements({
     type: 'button',
     text: 'Get Weather',
-    classes: ['btn', 'btn-primary', 'opacity-100', 'text-center'],
+    classes: ['btn', 'btn-primary', 'opacity-100', 'text-center','mt-3'],
     id: 'getWeatherBtn',
     parent: formCol
 });
