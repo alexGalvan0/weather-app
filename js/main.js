@@ -12,14 +12,21 @@ function createElements({
     setAttribute
 
 } = {}) {
-
     let element = document.createElement(type)
+
+    if(classes == undefined){
+        ''
+    } else {
+        classes.forEach(classAdded => {
+            console.log(classAdded)
+
+        });
+    }
     element.innerHTML = text;
     element.id = id
     element.alt = alt
     element.src = src
-    element.setAttribute = setAttribute
-    element.classList.add(classes)
+    element.setAttribute = setAttribute  
     parent.appendChild(element)
     return element
 }
@@ -31,11 +38,11 @@ spinners.id = 'spinner'
 body.appendChild(spinners)
 
 let formDivContainer = createElements({
-    classes: ('row', 'row-zip'),
+    classes: ['row', 'row-zip'],
     parent: root
 });
 let formCol = createElements({
-    classes: ('col-xl-6', 'col-sm-12', 'd-flex', 'justify-content-center', 'opacity-100', 'flex-wrap'),
+    classes: ['col-xl-6', 'col-sm-12', 'd-flex', 'justify-content-center', 'opacity-100', 'flex-wrap'],
     parent: formDivContainer
 });
 let formLabel = createElements({
@@ -52,17 +59,17 @@ let inputField = createElements({
 let btn = createElements({
     type: 'button',
     text: 'Get Weather',
-    classes: ('btn', 'btn-primary', 'opacity-100', 'text-center'),
+    classes: ['btn', 'btn-primary', 'opacity-100', 'text-center'],
     id: 'getWeatherBtn',
     parent: formCol
 });
 
 let cityDivRow = createElements({
-    classes: ('row', 'row-city'),
+    classes: ['row', 'row-city'],
     parent: root
 });
 let cityCol = createElements({
-    classes: ('col-xl-6', 'col-sm-12', 'd-flex', 'flex-row', 'justify-content-center', 'flex-column', 'text-center', 'opacity-100'),
+    classes: ['col-xl-6', 'col-sm-12', 'd-flex', 'flex-row', 'justify-content-center', 'flex-column', 'text-center', 'opacity-100'],
     parent: cityDivRow
 });
 let city = createElements({
@@ -76,11 +83,11 @@ let cityOutputs = createElements({
     parent: cityCol
 })
 let conditionRow = createElements({
-    classes: ('row', 'row-condition'),
+    classes: ['row', 'row-condition'],
     parent: root
 })
 let conditionCol = createElements({
-    classes: ('col-xl-6', 'col-sm-12', 'd-flex', 'justify-content-center', 'flex-column', 'opacity-100'),
+    classes: ['col-xl-6', 'col-sm-12', 'd-flex', 'justify-content-center', 'flex-column', 'opacity-100'],
     parent: conditionRow
 })
 let condi = createElements({
@@ -94,12 +101,12 @@ let conOutput = createElements({
     parent: conditionCol
 })
 let tempRow = createElements({
-    classes: ('row', 'row-temp'),
+    classes: ['row', 'row-temp'],
     parent: root
 })
 let temCol = createElements({
-    classes: ('col-xl-6', 'col-sm-12', 'd-flex', 'flex-row', 'justify-content-center', 'flex-column', 'text-center', 'opacity-100'),
-    parent: tempRow
+    classes: ['col-xl-6', 'col-sm-12', 'd-flex', 'flex-row', 'justify-content-center', 'flex-column', 'text-center', 'opacity-100'],
+    parent:tempRow
 })
 let temp = createElements({
     type: 'h3',
@@ -122,11 +129,11 @@ let cels = createElements({
     parent: temCol
 })
 let infoRow = createElements({
-    classes: ('row', 'row-info'),
+    classes: ['row', 'row-info'],
     parent: root
 })
 let infoCol = createElements({
-    classes: ('col-xl-6', 'col-sm-12', 'opacity-100'),
+    classes: ['col-xl-6', 'col-sm-12', 'opacity-100'],
     parent: infoRow
 })
 let infoHeader = createElements({
