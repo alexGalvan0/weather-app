@@ -54,13 +54,8 @@ let icon = document.getElementById('icon')
 const key = '933f7703450958683b430c05ee91f80b';
 let zip;
 let lat;
-
 async function getUserInput({apiEndPoint=''}={}) {
-    zip = zipInput.value.toString();
     //dont run unless zip input 
-    if (zip == ''|| lat == undefined ) {
-        return
-    }
     let data;
     try {
         let resp = await axios.get(apiEndPoint);
@@ -99,4 +94,7 @@ navigator.geolocation.getCurrentPosition(async (position) => {
     alert('add zip')
 })
 addEventListener('DOMContentLoaded', getUserInput)
-getWeatherBtn.addEventListener('click', getUserInput({apiEndPoint:`https://api.openweathermap.org/data/2.5/weather?zip=${zip},us&units=imperial&appid=${key}`}))
+getWeatherBtn.addEventListener('click', ()=>{
+    zip = zipInput.value.toString();
+    getUserInput({apiEndPoint:`https://api.openweathermap.org/data/2.5/weather?zip=${zip},us&units=imperial&appid=${key}`})
+})
