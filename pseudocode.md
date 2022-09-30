@@ -26,3 +26,20 @@
 
 ### Add Bootsrap Classes
 
+
+
+### LOGIC
+> - On Page Load
+>   -   Ask user to allow location to app
+>       - if accepted
+>           -fetch api using coordinates
+>       - If rejected
+>           - alert user to input a zipcode and make api call.
+
+
+> - On Button click
+>   -   Get input from user from input field
+>   -   check to see if input is 5 digits
+>   -   
+
+
