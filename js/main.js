@@ -204,6 +204,7 @@ navigator.geolocation.getCurrentPosition(async (position) => {
 }, () => {
 
     alert('add zip')
+    spinner.classList.add('hidden')
 })
 addEventListener('DOMContentLoaded', getUserInput)
 getWeatherBtn.addEventListener('click', () => {
