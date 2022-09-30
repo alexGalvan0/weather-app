@@ -18,8 +18,7 @@ function createElements({
         ''
     } else {
         classes.forEach(classAdded => {
-            console.log(classAdded)
-
+            element.classList.add(classAdded)
         });
     }
     element.innerHTML = text;
@@ -169,7 +168,6 @@ async function getUserInput({ apiEndPoint = '' } = {}) {
     try {
         let resp = await axios.get(apiEndPoint);
         data = resp;
-        console.log(data)
     } catch {
         alert('Invalid Zip')
         spinner.classList.add('hidden')
