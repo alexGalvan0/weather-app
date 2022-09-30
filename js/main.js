@@ -5,11 +5,12 @@ function createElements({
     type = 'div',
     text = '',
     parent = '',
-    classes = '()',
+    classes,
     id = '',
     alt,
     src,
     setAttribute
+
 } = {}) {
 
     let element = document.createElement(type)
