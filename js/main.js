@@ -52,13 +52,14 @@ let formLabel = createElements({
 let inputField = createElements({
     type: 'input',
     id: 'zipInput',
+    classes: ['ml-5'],
     setAttribute: ('maxlength', '5'),
     parent: formLabel
 })
 let btn = createElements({
     type: 'button',
     text: 'Get Weather',
-    classes: ['btn', 'btn-primary', 'opacity-100', 'text-center','mt-3'],
+    classes: ['btn', 'btn-primary', 'opacity-100', 'text-center'],
     id: 'getWeatherBtn',
     parent: formCol
 });
