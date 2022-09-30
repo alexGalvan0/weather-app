@@ -54,5 +54,11 @@
 
 > - Insert variables into HTML
 
+> - Create function createElemtns
+>   -   classes
+>   -   attribute
+>   -   type
+>   -   text
+
 
 
