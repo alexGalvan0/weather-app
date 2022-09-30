@@ -1,15 +1,15 @@
 const root = document.getElementById('root')
 const body = document.body;
 
-function createElements({ 
-    type = 'div', 
-    text = '', 
-    parent = '', 
-    classes = '()', 
-    id = '', 
-    alt, 
-    src, 
-    setAttribute 
+function createElements({
+    type = 'div',
+    text = '',
+    parent = '',
+    classes = '()',
+    id = '',
+    alt,
+    src,
+    setAttribute
 } = {}) {
 
     let element = document.createElement(type)
@@ -29,117 +29,117 @@ spinners.classList.add('spinner-border', 'text-light', 'p-5', 'modal', 'position
 spinners.id = 'spinner'
 body.appendChild(spinners)
 
-let formDivContainer = createElements({ 
-    classes: ('row', 'row-zip'), 
-    parent: root 
+let formDivContainer = createElements({
+    classes: ('row', 'row-zip'),
+    parent: root
 });
-let formCol = createElements({ 
-    classes: ('col-xl-6', 'col-sm-12', 'd-flex', 'justify-content-center', 'opacity-100', 'flex-wrap'), 
-    parent: formDivContainer 
+let formCol = createElements({
+    classes: ('col-xl-6', 'col-sm-12', 'd-flex', 'justify-content-center', 'opacity-100', 'flex-wrap'),
+    parent: formDivContainer
 });
-let formLabel = createElements({ 
-    type: 'label', 
-    text: 'Zip:', 
-    parent: root 
+let formLabel = createElements({
+    type: 'label',
+    text: 'Zip:',
+    parent: root
 });
-let inputField = createElements({ 
+let inputField = createElements({
     type: 'input',
-     id: 'zipInput', 
-     setAttribute: ('maxlength', '5'), 
-     parent: formLabel 
+    id: 'zipInput',
+    setAttribute: ('maxlength', '5'),
+    parent: formLabel
 })
-let btn = createElements({ 
-    type: 'button', 
-    text: 'Get Weather', 
-    classes: ('btn', 'btn-primary', 'opacity-100', 'text-center'), 
-    id: 'getWeatherBtn', 
-    parent: formCol 
+let btn = createElements({
+    type: 'button',
+    text: 'Get Weather',
+    classes: ('btn', 'btn-primary', 'opacity-100', 'text-center'),
+    id: 'getWeatherBtn',
+    parent: formCol
 });
 
-let cityDivRow = createElements({ 
-    classes: ('row', 'row-city'), 
-    parent: root 
+let cityDivRow = createElements({
+    classes: ('row', 'row-city'),
+    parent: root
 });
-let cityCol = createElements({ 
-    classes: ('col-xl-6', 'col-sm-12', 'd-flex', 'flex-row', 'justify-content-center', 'flex-column', 'text-center', 'opacity-100'), 
-    parent: cityDivRow 
+let cityCol = createElements({
+    classes: ('col-xl-6', 'col-sm-12', 'd-flex', 'flex-row', 'justify-content-center', 'flex-column', 'text-center', 'opacity-100'),
+    parent: cityDivRow
 });
-let city = createElements({ 
+let city = createElements({
     type: 'h3',
-     text: 'City',
-    parent: cityCol 
+    text: 'City',
+    parent: cityCol
 });
-let cityOutputs = createElements({ 
-    type: 'p', 
-    id: 'cityOutput', 
-    parent: cityCol 
+let cityOutputs = createElements({
+    type: 'p',
+    id: 'cityOutput',
+    parent: cityCol
 })
-let conditionRow = createElements({ 
-    classes: ('row', 'row-condition'), 
-    parent: root 
+let conditionRow = createElements({
+    classes: ('row', 'row-condition'),
+    parent: root
 })
-let conditionCol = createElements({ 
-    classes: ('col-xl-6', 'col-sm-12', 'd-flex', 'justify-content-center', 'flex-column', 'opacity-100'), 
-    parent: conditionRow 
+let conditionCol = createElements({
+    classes: ('col-xl-6', 'col-sm-12', 'd-flex', 'justify-content-center', 'flex-column', 'opacity-100'),
+    parent: conditionRow
 })
-let condi = createElements({ 
-    type: 'h3', 
-    text: 'Condition', 
-    parent: conditionCol 
+let condi = createElements({
+    type: 'h3',
+    text: 'Condition',
+    parent: conditionCol
 })
-let conOutput = createElements({ 
-    type: 'p', 
-    id: 'condition', 
-    parent: conditionCol 
+let conOutput = createElements({
+    type: 'p',
+    id: 'condition',
+    parent: conditionCol
 })
-let tempRow = createElements({ 
-    classes: ('row', 'row-temp'), 
-    parent: root 
+let tempRow = createElements({
+    classes: ('row', 'row-temp'),
+    parent: root
 })
-let temCol = createElements({ 
-    classes: ('col-xl-6', 'col-sm-12', 'd-flex', 'flex-row', 'justify-content-center', 'flex-column', 'text-center', 'opacity-100'), 
-    parent: tempRow 
+let temCol = createElements({
+    classes: ('col-xl-6', 'col-sm-12', 'd-flex', 'flex-row', 'justify-content-center', 'flex-column', 'text-center', 'opacity-100'),
+    parent: tempRow
 })
-let temp = createElements({ 
-    type: 'h3', 
-    text: 'Temperature', 
-    parent: temCol 
+let temp = createElements({
+    type: 'h3',
+    text: 'Temperature',
+    parent: temCol
 })
-let kel = createElements({ 
-    type: 'p', 
-    id: 'kelvin', 
-    parent: temCol 
+let kel = createElements({
+    type: 'p',
+    id: 'kelvin',
+    parent: temCol
 })
-let fer = createElements({ 
-    type: 'p', 
-    id: 'fere', 
-    parent: temCol 
+let fer = createElements({
+    type: 'p',
+    id: 'fere',
+    parent: temCol
 })
-let cels = createElements({ 
-    type: 'p', 
-    id: 'celsius', 
-    parent: temCol 
+let cels = createElements({
+    type: 'p',
+    id: 'celsius',
+    parent: temCol
 })
-let infoRow = createElements({ 
-    classes: ('row', 'row-info'), 
-    parent: root 
+let infoRow = createElements({
+    classes: ('row', 'row-info'),
+    parent: root
 })
-let infoCol = createElements({ 
-    classes: ('col-xl-6', 'col-sm-12', 'opacity-100'), 
-    parent: infoRow 
+let infoCol = createElements({
+    classes: ('col-xl-6', 'col-sm-12', 'opacity-100'),
+    parent: infoRow
 })
-let infoHeader = createElements({ 
-    type: 'h3', 
-    text: 'Other Info', 
-    parent: infoCol 
-})
-let infoIcon = createElements({ 
-    type: 'img', 
-    id: 'icon', 
-    src: "", alt: 
-    "Icon", 
+let infoHeader = createElements({
+    type: 'h3',
+    text: 'Other Info',
     parent: infoCol
- })
+})
+let infoIcon = createElements({
+    type: 'img',
+    id: 'icon',
+    src: "", alt:
+        "Icon",
+    parent: infoCol
+})
 //get html elements
 const spinner = document.getElementById('spinner');
 const zipInput = document.getElementById('zipInput');
@@ -164,7 +164,7 @@ async function getUserInput({ apiEndPoint = '' } = {}) {
     } catch {
         alert('Invalid Zip')
         spinner.classList.add('hidden')
-        zipInput.value=''
+        zipInput.value = ''
     }
 
     let cityName = data.data.name;
