@@ -38,8 +38,21 @@
 
 
 > - On Button click
->   -   Get input from user from input field
->   -   check to see if input is 5 digits
->   -   
+>   - Get input from user from input field
+>   - check to see if input is 5 digits
+>       - input field validation
+>   - if zip not included, end function
+>   - if zip included, fet api
+
+> - Create Variables from api
+>   - City name
+>   - Fahrenheit
+>       - celsius = Fahrenheit - 32 * 5/9
+>       - kelvin = Fahrenheit - 32 (* 5/9) + 273.5
+>   - condition
+>   - Icon
+
+> - Insert variables into HTML
+
 
 
