@@ -1,7 +1,7 @@
 const root = document.getElementById('root')
 const body = document.body;
 
-function createElements({ type = 'div', text = '', parent = '', classes = 'added', id = '', alt, src, setAttribute } = {}) {
+function createElements({ type = 'div', text = '', parent = '', classes = '()', id = '', alt, src, setAttribute } = {}) {
     let element = document.createElement(type)
     element.innerHTML = text;
     element.id = id
@@ -14,7 +14,6 @@ function createElements({ type = 'div', text = '', parent = '', classes = 'added
 root.classList.add('container', 'd-flex', 'flex-column', 'comp-container', 'text-center', 'opacity-75')
 
 function createSpiner() { createElements({ classes: ('spinner-border', 'text-light', 'p-5', 'modal', 'position-absolute', 'text-center'), id: 'spinner', parent: body }) }
-
 let formDivContainer = createElements({ classes: ('row', 'row-zip'), parent: root });
 let formCol = createElements({ classes: ('col-xl-6', 'col-sm-12', 'd-flex', 'justify-content-center', 'opacity-100', 'flex-wrap'), parent: formDivContainer });
 let formLabel = createElements({ type: 'label', text: 'Zip:', parent: root });
@@ -43,7 +42,6 @@ let infoHeader = createElements({ type: 'h3', text: 'Other Info', parent: infoCo
 let infoIcon = createElements({ type: 'img', id: 'icon', src: "", alt: "Icon", parent: infoCol })
 
 //get html elements
-const spinner = document.getElementById('spinner');
 const zipInput = document.getElementById('zipInput');
 const getWeatherBtn = document.getElementById('getWeatherBtn');
 const cityOutput = document.getElementById('cityOutput');
@@ -54,24 +52,23 @@ let condition = document.getElementById('condition');
 let icon = document.getElementById('icon')
 
 const key = '933f7703450958683b430c05ee91f80b';
+let zip;
+let lat;
 
-async function getUserInput() {
-    let zip = zipInput.value.toString();
-
+async function getUserInput({apiEndPoint=''}={}) {
+    zip = zipInput.value.toString();
     //dont run unless zip input 
-    if (zip == '') {
+    if (zip == ''|| lat == undefined ) {
         return
     }
-    let url = `https://api.openweathermap.org/data/2.5/weather?zip=${zip},us&units=imperial&appid=${key}`
     let data;
     try {
-        let resp = await axios.get(url);
+        let resp = await axios.get(apiEndPoint);
         data = resp;
     } catch {
         alert('Invalid Zip')
 
     }
-
     let cityName = data.data.name;
     let fereTemp = data.data.main.temp;
 
@@ -81,7 +78,6 @@ async function getUserInput() {
     let conditionTemp = data.data.weather[0].description
 
     let iconId = data.data.weather[0].icon
-
 
     cityOutput.innerHTML = cityName
 
@@ -92,46 +88,15 @@ async function getUserInput() {
     condition.textContent = conditionTemp;
 
     icon.src = `http://openweathermap.org/img/wn/${iconId}@2x.png`
-
-
 }
 //get User Location
-
 navigator.geolocation.getCurrentPosition(async (position) => {
     lat = position.coords.latitude
-    lon = position.coords.longitude
-
-    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${key}`
-    let resp = await axios.get(url)
-    let data = resp
-    let cityName = data.data.name;
-    let fereTemp = data.data.main.temp;
-
-    let celsiTemp = (parseInt(fereTemp) - 32) * 5 / 9
-    let kelvinTemp = (parseInt(fereTemp) - 32) * 5 / 9 + 273.15
-
-    let conditionTemp = data.data.weather[0].description
-
-    let iconId = data.data.weather[0].icon
-
-
-    cityOutput.innerHTML = cityName
-
-    fere.innerText = `Fahrenheit: ${Math.ceil(fereTemp)}`
-    celsius.textContent = ` Celsius: ${Math.ceil(celsiTemp)}`
-    kelvin.textContent = ` Kelvin: ${Math.ceil(kelvinTemp)}`
-
-    condition.textContent = conditionTemp;
-
-    icon.src = `http://openweathermap.org/img/wn/${iconId}@2x.png`
-
-
+    let lon = position.coords.longitude
+    getUserInput({apiEndPoint:`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${key}`})
 }, () => {
 
     alert('add zip')
 })
-
-
-
 addEventListener('DOMContentLoaded', getUserInput)
-getWeatherBtn.addEventListener('click', getUserInput)
+getWeatherBtn.addEventListener('click', getUserInput({apiEndPoint:`https://api.openweathermap.org/data/2.5/weather?zip=${zip},us&units=imperial&appid=${key}`}))
