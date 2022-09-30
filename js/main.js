@@ -161,6 +161,7 @@ async function getUserInput({ apiEndPoint = '' } = {}) {
     try {
         let resp = await axios.get(apiEndPoint);
         data = resp;
+        console.log(data)
     } catch {
         alert('Invalid Zip')
         spinner.classList.add('hidden')
