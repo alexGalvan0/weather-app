@@ -39,7 +39,10 @@
     }
     #root {
         background-color: lightgray;
-        height: 100vh;
-        
+        height: 100vh;    
+    }
+
+    .btn{
+        margin-top: 5px;
     }
 }
